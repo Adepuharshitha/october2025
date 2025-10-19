@@ -1,0 +1,22 @@
+class Solution:
+    def findLexSmallestString(self, s: str, a: int, b: int) -> str:
+        seen=set()
+        q=deque([s])
+        smallest=s
+        while q:
+            cur=q.popleft()
+            if cur in seen:
+                continue
+            seen.add(cur)
+            if cur<smallest:
+                smallest=cur
+            s1=list(cur)
+            for i in range(1,len(s1),2):
+                s1[i]=str((int(s1[i])+a)%10)
+            s1=''.join(s1)
+            s2=cur[-b:]+cur[:-b]
+            for nxt in (s1,s2):
+                if nxt not in seen:
+                    q.append(nxt)
+        return smallest
+        
