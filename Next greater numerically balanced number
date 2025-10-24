@@ -1,0 +1,17 @@
+class Solution:
+    def nextBeautifulNumber(self, n: int) -> int:
+        def is_balanced(x):
+            from collections import Counter
+            count=Counter(str(x))
+            for d,freq in count.items():
+                if freq!=int(d):
+                    return False
+            return True
+        num=n+1
+        while True:
+            if is_balanced(num):
+                return num
+            num+=1
+
+            
+        
